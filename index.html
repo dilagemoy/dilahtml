@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Penjual E-Commerce</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            background:#f4f4f4;
+        }
+
+        header{
+            background:#0d6efd;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        nav{
+            background:#333;
+            padding:10px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:15px;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            padding:20px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            margin-bottom:20px;
+            border-radius:8px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table, th, td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#0d6efd;
+            color:white;
+        }
+
+        th, td{
+            padding:10px;
+            text-align:center;
+        }
+
+        button{
+            background:#0d6efd;
+            color:white;
+            border:none;
+            padding:8px 15px;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        footer{
+            background:#333;
+            color:white;
+            text-align:center;
+            padding:15px;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Dashboard Penjual E-Commerce</h1>
+    <p>Kelola Produk dan Pesanan dengan Mudah</p>
+</header>
+
+<nav>
+    <a href="#">Beranda</a>
+    <a href="#">Produk</a>
+    <a href="#">Pesanan</a>
+    <a href="#">Pelanggan</a>
+    <a href="#">Laporan</a>
+    <a href="#">Logout</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Informasi Toko</h2>
+        <p><b>Nama Toko :</b> Toko Nadila</p>
+        <p><b>Pemilik :</b> Nadila Nurul Wahidah</p>
+        <p><b>Status :</b> Aktif</p>
+    </div>
+
+    <div class="card">
+        <h2>Ringkasan Penjualan</h2>
+        <ul>
+            <li>Total Produk : 20</li>
+            <li>Total Pesanan : 35</li>
+            <li>Pesanan Diproses : 8</li>
+            <li>Total Pendapatan : Rp7.500.000</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Daftar Produk</h2>
+
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Nama Produk</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Kaos Polos</td>
+                <td>Rp80.000</td>
+                <td>25</td>
+                <td>Tersedia</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Sepatu Sneakers</td>
+                <td>Rp350.000</td>
+                <td>12</td>
+                <td>Tersedia</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Tas Ransel</td>
+                <td>Rp200.000</td>
+                <td>10</td>
+                <td>Tersedia</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>Jam Tangan</td>
+                <td>Rp150.000</td>
+                <td>5</td>
+                <td>Hampir Habis</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <button onclick="tambahProduk()">Tambah Produk</button>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Dashboard Penjual E-Commerce</p>
+</footer>
+
+<script>
+function tambahProduk(){
+    alert("Menu tambah produk berhasil dipilih.");
+}
+</script>
+
+</body>
+</html>
