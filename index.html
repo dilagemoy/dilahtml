@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BonekaKu Store</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#fff5f8;
+}
+header{
+    background:#ffb6c1;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+header h2{
+    color:white;
+}
+input{
+    width:40%;
+    padding:8px;
+    border:none;
+    border-radius:20px;
+}
+.banner{
+    background:#ffd9e8;
+    margin:15px;
+    padding:30px;
+    text-align:center;
+    border-radius:15px;
+    color:#d63384;
+}
+.produk{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
+}
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 8px rgba(0,0,0,.1);
+}
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+.isi{
+    padding:15px;
+}
+h3{
+    margin:5px 0;
+}
+.harga{
+    color:#e91e63;
+    font-weight:bold;
+}
+button{
+    width:100%;
+    padding:10px;
+    background:#ff7eb3;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+button:hover{
+    background:#ec407a;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>🧸 BonekaKu</h2>
+    <input type="text" placeholder="Cari boneka lucu...">
+</header>
+
+<div class="banner">
+    <h1>🎀 Diskon Boneka Hingga 50% 🎀</h1>
+    <p>Boneka lucu, lembut, dan berkualitas.</p>
+</div>
+
+<div class="produk">
+
+<div class="card">
+<img src="https://placehold.co/300x250/f8c8dc/ffffff?text=Teddy+Bear">
+<div class="isi">
+<h3>Teddy Bear</h3>
+<p class="harga">Rp150.000</p>
+<button>Beli Sekarang</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/300x250/f9d5e5/ffffff?text=Bunny+Doll">
+<div class="isi">
+<h3>Bunny Doll</h3>
+<p class="harga">Rp120.000</p>
+<button>Tambah Keranjang</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/300x250/ffdce5/ffffff?text=Cat+Plush">
+<div class="isi">
+<h3>Cat Plush</h3>
+<p class="harga">Rp95.000</p>
+<button>Beli Sekarang</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/300x250/f8bfd1/ffffff?text=Unicorn">
+<div class="isi">
+<h3>Unicorn Doll</h3>
+<p class="harga">Rp180.000</p>
+<button>Tambah Keranjang</button>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
