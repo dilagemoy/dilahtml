@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinkyStore - Toko Lucu & Gemes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Quicksand untuk kesan imut dan bulat -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinkSoft: '#ffe6eb',
+                        pinkMain: '#ffb3c6',
+                        pinkDark: '#ff758c',
+                        pinkBg: '#fff0f3',
+                        textDark: '#594a4e'
+                    },
+                    fontFamily: {
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-quicksand bg-pinkBg text-textDark antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-pinkSoft">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="bg-pinkMain text-white p-2 rounded-full shadow-md"><i class="fa-solid fa-paw"></i></span>
+                <span class="text-xl font-bold tracking-wider text-pinkDark">PinkyStore ✨</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+                <a href="#" class="text-pinkDark hover:text-pink-500 transition">Beranda</a>
+                <a href="#" class="hover:text-pinkDark transition">Kategori</a>
+                <a href="#" class="hover:text-pinkDark transition">Favorit Aku</a>
+                <a href="#" class="hover:text-pinkDark transition">Pesanan</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" placeholder="Cari barang gemes..." class="bg-pinkSoft/50 text-xs rounded-full px-4 py-2 pl-9 focus:outline-none focus:ring-2 focus:ring-pinkMain w-36 md:w-56">
+                    <i class="fa-solid fa-search absolute left-3 top-2.5 text-pink-400 text-xs"></i>
+                </div>
+                <a href="#" class="relative text-pinkDark text-lg">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="absolute -top-1 -right-2 bg-pinkDark text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-gradient-to-r from-pink-200 to-pinkSoft rounded-3xl p-6 md:p-12 flex flex-col md:flex-row items-center justify-between shadow-lg relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 text-pink-300/30 text-9xl pointer-events-none">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="md:w-1/2 space-y-4 text-center md:text-left z-10">
+                <span class="bg-white text-pinkDark text-xs font-bold px-3 py-1 rounded-full shadow-sm">Koleksi Terbaru 🌸</span>
+                <h1 class="text-3xl md:text-5xl font-bold text-pinkDark leading-tight">Barang Lucu & Aesthetic Buat Kamu!</h1>
+                <p class="text-sm md:text-base text-gray-600">Temukan berbagai aksesoris, boneka, dan perlengkapan super gemes penambah semangat harimu.</p>
+                <button class="bg-pinkDark hover:bg-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-md transition transform hover:scale-105">
+                    Belanja Sekarang <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+            <div class="md:w-1/2 mt-6 md:mt-0 z-10 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=500&auto=format&fit=crop" alt="Aesthetic Room Decor" class="rounded-2xl shadow-md w-72 md:w-80 h-56 md:h-64 object-cover border-4 border-white">
+            </div>
+        </div>
+    </header>
+
+    <!-- KATEGORI PILIHAN -->
+    <section class="max-w-6xl mx-auto px-4 py-6">
+        <h2 class="text-lg font-bold text-pinkDark mb-4 flex items-center">
+            <i class="fa-solid fa-star mr-2 text-yellow-400"></i> Kategori Gemes
+        </h2>
+        <div class="grid grid-cols-4 gap-3 md:gap-6 text-center">
+            <div class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <span class="text-xs font-semibold">Boneka</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-pen-nib"></i></div>
+                <span class="text-xs font-semibold">Alat Tulis</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-mug-hot"></i></div>
+                <span class="text-xs font-semibold">Mug & Botol</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-shirt"></i></div>
+                <span class="text-xs font-semibold">Piyama</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK LIST -->
+    <section class="max-w-6xl mx-auto px-4 py-6 mb-12">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-bold text-pinkDark flex items-center">
+                <i class="fa-solid fa-heart mr-2 text-pinkDark"></i> Pilihan Paling Gemes
+            </h2>
+            <a href="#" class="text-xs font-bold text-pinkDark hover:underline">Lihat Semua</a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- Produk 1: Boneka Beruang Pastel -->
+            <div class="bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556015058-769062319c5f?q=80&w=400&auto=format&fit=crop" alt="Boneka Beruang Pastel" class="w-full h-40 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full text-pinkDark text-xs shadow"><i class="fa-regular fa-heart"></i></span>
+                    </div>
+                    <h3 class="font-bold text-sm mt-3 line-clamp-1">Boneka Beruang Pastel</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Bahan sangat lembut</p>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="text-pinkDark font-bold text-sm">Rp 75.000</span>
+                    <button class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+
+            <!-- Produk 2: Mug Keramik Kelinci -->
+            <div class="bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop" alt="Mug Keramik Kelinci" class="w-full h-40 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full text-pinkDark text-xs shadow"><i class="fa-regular fa-heart"></i></span>
+                    </div>
+                    <h3 class="font-bold text-sm mt-3 line-clamp-1">Mug Keramik Kelinci</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Free sendok lucu</p>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="text-pinkDark font-bold text-sm">Rp 45.000</span>
+                    <button class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+
+            <!-- Produk 3: Piyama Set Motif Strawberry -->
+            <div class="bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=400&auto=format&fit=crop" alt="Piyama Set Motif Strawberry" class="w-full h-40 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full text-pinkDark text-xs shadow"><i class="fa-regular fa-heart"></i></span>
+                    </div>
+                    <h3 class="font-bold text-sm mt-3 line-clamp-1">Piyama Set Motif Strawberry</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Adem & nyaman dipakai</p>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="text-pinkDark font-bold text-sm">Rp 115.000</span>
+                    <button class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+
+            <!-- Produk 4: Buku Catatan Pastel Aesthetic -->
+            <div class="bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between">
+                <div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400&auto=format&fit=crop" alt="Buku Catatan Pastel Aesthetic" class="w-full h-40 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full text-pinkDark text-xs shadow"><i class="fa-regular fa-heart"></i></span>
+                    </div>
+                    <h3 class="font-bold text-sm mt-3 line-clamp-1">Buku Catatan Pastel Aesthetic</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">100 Halaman bergaris</p>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="text-pinkDark font-bold text-sm">Rp 29.000</span>
+                    <button class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-pinkSoft py-6 text-center text-xs text-gray-500">
+        <p>Dibuat dengan 💖 penuh kege-mes-an untuk PinkyStore © 2026</p>
+    </footer>
+
+</body>
+</html>
