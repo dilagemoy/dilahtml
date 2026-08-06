@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinkyStore - Toko Lucu & Gemes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinkSoft: '#ffe6eb',
+                        pinkMain: '#ffb3c6',
+                        pinkDark: '#ff758c',
+                        pinkBg: '#fff0f3',
+                        textDark: '#594a4e'
+                    },
+                    fontFamily: {
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-quicksand bg-pinkBg text-textDark antialiased">
+
+    <!-- NAVBAR UTAMA -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-pinkSoft">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="bg-pinkMain text-white p-2 rounded-full shadow-md"><i class="fa-solid fa-paw"></i></span>
+                <span id="storeTitle" class="text-xl font-bold tracking-wider text-pinkDark">PinkyStore ✨</span>
+            </div>
+            <!-- Tombol Pengalih Halaman Customer / Admin -->
+            <div class="flex items-center space-x-2">
+                <button onclick="switchPage('customer')" id="btnCust" class="bg-pinkDark text-white px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-store mr-1">></i> Toko (Customer)
+                </button>
+                <button onclick="switchPage('admin')" id="btnAdmin" class="bg-pinkSoft text-pinkDark px-3 py-1.5 rounded-full text-xs font-bold transition hover:bg-pinkMain hover:text-white cursor-pointer">
+                    <i class="fa-solid fa-user-gear mr-1"></i> Panel Admin
+                </button>
+            </div>
+            <div class="hidden md:flex items-center space-x-4" id="customerSearchNav">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Cari barang gemes..." class="bg-pinkSoft/50 text-xs rounded-full px-4 py-2 pl-9 focus:outline-none focus:ring-2 focus:ring-pinkMain w-36">
+                    <i class="fa-solid fa-search absolute left-3 top-2.5 text-pink-400 text-xs"></i>
+                </div>
+                <button onclick="toggleCartModal()" class="relative text-pinkDark text-lg p-2 cursor-pointer focus:outline-none">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCount" class="absolute top-0 right-0 bg-pinkDark text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= SUB-HALAMAN 1: CUSTOMER ================= -->
+    <div id="customerPage" class="block">
+        <!-- HERO SECTION -->
+        <header class="max-w-6xl mx-auto px-4 py-8">
+            <div class="bg-gradient-to-r from-pink-200 to-pinkSoft rounded-3xl p-6 md:p-12 flex flex-col md:flex-row items-center justify-between shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 text-pink-300/30 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="md:w-1/2 space-y-4 text-center md:text-left z-10">
+                    <span class="bg-white text-pinkDark text-xs font-bold px-3 py-1 rounded-full shadow-sm">Koleksi Terbaru 🌸</span>
+                    <h1 class="text-3xl md:text-5xl font-bold text-pinkDark leading-tight">Barang Lucu & Aesthetic Buat Kamu!</h1>
+                    <p class="text-sm md:text-base text-gray-600">Temukan berbagai aksesoris, boneka, dan perlengkapan super gemes penambah semangat harimu.</p>
+                </div>
+                <div class="md:w-1/2 mt-6 md:mt-0 z-10 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=500&auto=format&fit=crop" alt="Aesthetic Room Decor" class="rounded-2xl shadow-md w-72 md:w-80 h-56 md:h-64 object-cover border-4 border-white">
+                </div>
+            </div>
+        </header>
+
+        <!-- KATEGORI PILIHAN -->
+        <section id="kategori" class="max-w-6xl mx-auto px-4 py-6">
+            <h2 class="text-lg font-bold text-pinkDark mb-4 flex items-center">
+                <i class="fa-solid fa-star mr-2 text-yellow-400"></i> Kategori Gemes
+            </h2>
+            <div class="grid grid-cols-4 gap-3 md:gap-6 text-center">
+                <div onclick="filterCategory('semua')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                    <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-border-all"></i></div>
+                    <span class="text-xs font-semibold">Semua</span>
+                </div>
+                <div onclick="filterCategory('boneka')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                    <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-puzzle-piece"></i></div>
+                    <span class="text-xs font-semibold">Boneka</span>
+                </div>
+                <div onclick="filterCategory('tulis')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                    <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-pen-nib"></i></div>
+                    <span class="text-xs font-semibold">Alat Tulis</span>
+                </div>
+                <div onclick="filterCategory('piyama')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer border border-pinkSoft">
+                    <div class="bg-pinkSoft w-12 h-12 mx-auto rounded-full flex items-center justify-center text-pinkDark mb-2 text-lg"><i class="fa-solid fa-shirt"></i></div>
+                    <span class="text-xs font-semibold">Piyama</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUK LIST -->
+        <section class="max-w-6xl mx-auto px-4 py-6 mb-12">
+            <h2 class="text-lg font-bold text-pinkDark mb-4 flex items-center">
+                <i class="fa-solid fa-heart mr-2 text-pinkDark"></i> Pilihan Paling Gemes
+            </h2>
+            <div id="productContainer" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Produk 1 -->
+                <div class="product-card bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between" data-category="boneka">
+                    <div>
+                        <div class="relative bg-white rounded-2xl overflow-hidden flex items-center justify-center h-40 border border-pink-100">
+                            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=400&auto=format&fit=crop" alt="Boneka Kelinci Pink Pastel" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="product-title font-bold text-sm mt-3 line-clamp-1">Boneka Kelinci Pink Pastel</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Bahan sangat lembut</p>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-pinkDark font-bold text-sm">Rp 75.000</span>
+                        <button onclick="addToCart('Boneka Kelinci Pink Pastel', 75000)" class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition active:scale-90 cursor-pointer">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Produk 2 -->
+                <div class="product-card bg-white rounded-3xl p-3 shadow-sm hover:shadow-md transition border border-pinkSoft flex flex-col justify-between" data-category="tulis">
+                    <div>
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400&auto=format&fit=crop" alt="Mug Keramik Kelinci" class="w-full h-40 object-cover rounded-2xl">
+                        </div>
+                        <h3 class="product-title font-bold text-sm mt-3 line-clamp-1">Mug Keramik Kelinci</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Free sendok lucu</p>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-pinkDark font-bold text-sm">Rp 45.000</span>
+                        <button onclick="addToCart('Mug Keramik Kelinci', 45000)" class="bg-pinkSoft hover:bg-pinkMain text-pinkDark w-8 h-8 rounded-full flex items-center justify-center transition active:scale-90 cursor-pointer">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= SUB-HALAMAN 2: ADMIN PANEL ================= -->
+    <div id="adminPage" class="hidden max-w-6xl mx-auto px-4 py-8 space-y-6">
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-pinkSoft flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-pinkDark">🛠️ Dashboard Admin Toko</h2>
+                <p class="text-xs text-gray-500">Kelola pesanan masuk dan produk PinkyStore dari sini.</p>
+            </div>
+            <div class="bg-pinkBg px-4 py-2 rounded-2xl text-xs font-bold text-pinkDark">
+                Total Pendapatan: <span id="adminRevenue">Rp 0</span>
+            </div>
+        </div>
+
+        <!-- Tabel Pesanan Masuk Pelanggan -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-pinkSoft">
+            <h3 class="font-bold text-sm text-pinkDark mb-3"><i class="fa-solid fa-clipboard-list mr-2"></i> Daftar Pesanan Masuk dari Customer</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-pinkSoft text-gray-400">
+                            <th class="py-2">ID Pesanan</th>
+                            <th class="py-2">Metode Bayar</th>
+                            <th class="py-2">Total Harga</th>
+                            <th class="py-2">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminOrdersTable">
+                        <tr>
+                            <td colspan="4" class="text-center py-4 text-gray-400">Belum ada pesanan masuk.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL / POPUP KERANJANG, PAYMENT, & SUCCESS -->
+    <div id="cartModal" class="fixed inset-0 bg-black/40 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-xl border-2 border-pinkSoft relative">
+            <div class="flex justify-between items-center mb-4 border-b border-pinkSoft pb-3">
+                <h3 id="modalTitle" class="font-bold text-pinkDark text-lg flex items-center"><i class="fa-solid fa-cart-shopping mr-2"></i> Keranjang Belanjaan Kamu 🛒</h3>
+                <button onclick="toggleCartModal()" class="text-gray-400 hover:text-pinkDark text-lg font-bold">&times;</button>
+            </div>
+            
+            <!-- TAMPILAN 1: KERANJANG -->
+            <div id="cartView">
+                <div id="cartItemsList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+                <div class="mt-4 pt-3 border-t border-pinkSoft flex justify-between items-center font-bold text-sm">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice" class="text-pinkDark text-base">Rp 0</span>
+                </div>
+                <button onclick="proceedToPayment()" class="w-full mt-4 bg-pinkDark hover:bg-pink-600 text-white font-bold py-3 rounded-full text-sm shadow-md transition cursor-pointer">
+                    Pilih Metode Pembayaran ✨
+                </button>
+            </div>
+
+            <!-- TAMPILAN 2: PAYMENT -->
+            <div id="paymentView" class="hidden space-y-3">
+                <p class="text-xs text-gray-500 mb-2">Pilih metode pembayaran gemes kamu:</p>
+                <div onclick="payNow('QRIS')" class="bg-pinkBg hover:bg-pinkSoft p-3 rounded-2xl flex items-center justify-between cursor-pointer transition border border-pinkSoft">
+                    <span class="text-xs font-bold">QRIS (Scan & Bayar)</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-pinkDark"></i>
+                </div>
+                <div onclick="payNow('DANA / ShopeePay')" class="bg-pinkBg hover:bg-pinkSoft p-3 rounded-2xl flex items-center justify-between cursor-pointer transition border border-pinkSoft">
+                    <span class="text-xs font-bold">DANA / ShopeePay</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-pinkDark"></i>
+                </div>
+                <button onclick="backToCart()" class="w-full mt-2 bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 rounded-full text-xs transition cursor-pointer">Kembali</button>
+            </div>
+
+            <!-- TAMPILAN 3: SUCCESS -->
+            <div id="successView" class="hidden text-center py-4 space-y-3">
+                <div class="w-16 h-16 bg-pinkSoft text-pinkDark text-2xl rounded-full flex items-center justify-center mx-auto shadow-inner">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-bold text-base text-pinkDark">Yeay! Pembayaran Berhasil! 🎉</h4>
+                <p id="successMessage" class="text-xs text-gray-500 px-2"></p>
+                <button onclick="toggleCartModal()" class="w-full mt-2 bg-pinkDark hover:bg-pink-600 text-white font-bold py-3 rounded-full text-sm shadow-md transition cursor-pointer">Belanja Lagi 🛍️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT INTERAKTIF -->
+    <script>
+        let cart = [{ name: "Boneka Kelinci Pink Pastel", price: 75000 }];
+        let ordersList = [];
+        let totalRevenue = 0;
+
+        function switchPage(page) {
+            const custPage = document.getElementById('customerPage');
+            const adminPage = document.getElementById('adminPage');
+            const btnCust = document.getElementById('btnCust');
+            const btnAdmin = document.getElementById('btnAdmin');
+            const searchNav = document.getElementById('customerSearchNav');
+
+            if (page === 'customer') {
+                custPage.classList.remove('hidden');
+                adminPage.classList.add('hidden');
+                searchNav.classList.remove('hidden');
+                btnCust.className = "bg-pinkDark text-white px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm cursor-pointer";
+                btnAdmin.className = "bg-pinkSoft text-pinkDark px-3 py-1.5 rounded-full text-xs font-bold transition hover:bg-pinkMain hover:text-white cursor-pointer";
+            } else {
+                custPage.classList.add('hidden');
+                adminPage.classList.remove('hidden');
+                searchNav.classList.add('hidden');
+                btnAdmin.className = "bg-pinkDark text-white px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm cursor-pointer";
+                btnCust.className = "bg-pinkSoft text-pinkDark px-3 py-1.5 rounded-full text-xs font-bold transition hover:bg-pinkMain hover:text-white cursor-pointer";
+                renderAdminOrders();
+            }
+        }
+
+        function toggleCartModal() {
+            document.getElementById('cartModal').classList.toggle('hidden');
+            backToCart();
+            renderCart();
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name: name, price: price });
+            updateCartCount();
+            alert(`Yey! "${name}" berhasil ditambah ke keranjang 🛒💖`);
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').innerText = cart.length;
+        }
+
+        function renderCart() {
+            const listContainer = document.getElementById('cartItemsList');
+            const totalPriceElem = document.getElementById('cartTotalPrice');
+            listContainer.innerHTML = '';
+            let total = 0;
+            if (cart.length === 0) {
+                listContainer.innerHTML = '<p class="text-center text-gray-400 text-xs py-4">Keranjang masih kosong ✨</p>';
+            } else {
+                cart.forEach(item => {
+                    total += item.price;
+                    listContainer.innerHTML += `<div class="flex justify-between items-center bg-pinkBg p-3 rounded-2xl text-xs"><p class="font-bold">${item.name}</p><p class="text-pinkDark font-semibold">Rp ${item.price.toLocaleString('id-ID')}</p></div>`;
+                });
+            }
+            totalPriceElem.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function proceedToPayment() {
+            if (cart.length === 0) { alert('Keranjang kosong!'); return; }
+            document.getElementById('cartView').classList.add('hidden');
+            document.getElementById('paymentView').classList.remove('hidden');
+        }
+
+        function backToCart() {
+            document.getElementById('paymentView').classList.add('hidden');
+            document.getElementById('successView').classList.add('hidden');
+            document.getElementById('cartView').classList.remove('hidden');
+            renderCart();
+        }
+
+        function payNow(method) {
+            let total = 0;
+            cart.forEach(item => total += item.price);
+            
+            // Catat pesanan masuk ke sistem admin
+            ordersList.push({
+                id: 'ORD-' + Math.floor(1000 + Math.random() * 9000),
+                method: method,
+                total: total,
+                status: 'Lunas ✅'
+            });
+            totalRevenue += total;
+
+            document.getElementById('paymentView').classList.add('hidden');
+            document.getElementById('successView').classList.remove('hidden');
+            document.getElementById('successMessage').innerText = `Pembayaran via ${method} sebesar Rp ${total.toLocaleString('id-ID')} berhasil diverifikasi!`;
+
+            cart = [];
+            updateCartCount();
+        }
+
+        function renderAdminOrders() {
+            const tableBody = document.getElementById('adminOrdersTable');
+            document.getElementById('adminRevenue').innerText = `Rp ${totalRevenue.toLocaleString('id-ID')}`;
+            tableBody.innerHTML = '';
+            if (ordersList.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="4" class="text-center py-4 text-gray-400">Belum ada pesanan masuk.</td></tr>';
+            } else {
+                ordersList.forEach(ord => {
+                    tableBody.innerHTML += `<tr class="border-b border-pinkSoft"><td class="py-2 font-bold">${ord.id}</td><td class="py-2">${ord.method}</td><td class="py-2">Rp ${ord.total.toLocaleString('id-ID')}</td><td class="py-2 text-pinkDark font-bold">${ord.status}</td></tr>`;
+                });
+            }
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = (cat === 'semua' || card.getAttribute('data-category') === cat) ? 'flex' : 'none';
+            });
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>
