@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GadgetStore Management System 🌸</title>
+  <style>
+    /* Reset & Theme Color Palette (Pink Aesthetic) */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fce7f3 0%, #f472b6 50%, #db2777 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #831843;
+    }
+
+    /* Floating Cute Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #be185d;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(219, 39, 119, 0.2);
+      margin-bottom: 25px;
+      border: 3px solid #fbcfe8;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      text-shadow: 1px 1px 2px #fbcfe8;
+    }
+
+    .user-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    /* Menu Navigasi Tab */
+    nav.nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      border-top: 2px dashed #fbcfe8;
+      padding-top: 15px;
+    }
+
+    .tab-btn {
+      background: #fff0f5;
+      color: #be185d;
+      border: 2px solid #fbcfe8;
+      padding: 8px 18px;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: #ec4899;
+      color: white;
+      border-color: #be185d;
+    }
+
+    /* Container Halaman Login */
+    .login-container {
+      max-width: 420px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 15px 30px rgba(190, 24, 93, 0.25);
+      border: 4px solid #fbcfe8;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      color: #be185d;
+      margin-bottom: 8px;
+    }
+
+    .login-container p {
+      color: #9d174d;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* Section Card Styling */
+    .section-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 25px;
+      padding: 22px;
+      box-shadow: 0 10px 20px rgba(190, 24, 93, 0.15);
+      border: 3px solid #fbcfe8;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      color: #be185d;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 3px dashed #f472b6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* === TAMPILAN BERANDA (HERO & PROMO) === */
+    .hero-banner {
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      color: white;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 18px rgba(236, 72, 153, 0.3);
+    }
+
+    .hero-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-banner p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .category-card {
+      background: #fff5f7;
+      border: 2px solid #fbcfe8;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #be185d;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      background: #fce7f3;
+    }
+
+    .category-card span {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Promo Highlight Box */
+    .promo-box {
+      background: #fff1f2;
+      border: 2px dashed #fda4af;
+      padding: 15px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .promo-box span {
+      font-size: 2rem;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: #9d174d;
+    }
+
+    .form-group input, 
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #fbcfe8;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      outline: none;
+      background-color: #fff5f7;
+      color: #831843;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      border-color: #ec4899;
+      background-color: #ffffff;
+      box-shadow: 0 0 8px rgba(236, 72, 153, 0.3);
+    }
+
+    .form-group textarea {
+      height: 90px;
+      resize: vertical;
+    }
+
+    /* Cute Buttons */
+    .btn-cute {
+      background: linear-gradient(135deg, #ec4899, #be185d);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(190, 24, 93, 0.3);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-cute:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: linear-gradient(135deg, #f472b6, #db2777);
+    }
+
+    .btn-logout {
+      background: #f43f5e;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Product Grid & Cards */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 2px solid #fbcfe8;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 15px rgba(219, 39, 119, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background-color: #fff0f5;
+    }
+
+    .product-body {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      color: #9d174d;
+      margin-bottom: 4px;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #db2777;
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: #6b21a8;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .video-label {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #be185d;
+      margin-bottom: 4px;
+    }
+
+    .product-video {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 2px solid #fbcfe8;
+      background-color: #000;
+    }
+
+    .btn-buy {
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .btn-buy:hover {
+      transform: scale(1.03);
+    }
+
+    /* Checkout Status Tracker */
+    .status-tracker {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 12px;
+      background-color: #fff1f2;
+      border: 2px dashed #fda4af;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #be123c;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HALAMAN LOGIN ================= -->
+  <div id="loginView" class="login-container">
+    <h2>🎀 Welcome Back! 🌸</h2>
+    <p>Silakan login untuk mengakses GadgetStore~</p>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="loginRole">Pilih Role Akses:</label>
+        <select id="loginRole">
+          <option value="Admin">Administrator 👑</option>
+          <option value="Pembeli" selected>Pembeli (Customer) 🛍️</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Masukkan nama kamu..." required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-cute" style="width: 100%;">Masuk Sekarang 💖</button>
+    </form>
+  </div>
+
+
+  <!-- ================= DASHBOARD UTAMA ================= -->
+  <div id="mainView" class="hidden">
+    
+    <!-- Header Utama + Navigation Bar -->
+    <header>
+      <div class="header-top">
+        <h1>✨ GadgetStore Management System ✨</h1>
+        <div class="user-bar">
+          <span>Halo, <strong id="userDisplay">User</strong>! 🌸 (<span id="roleDisplay">Role</span>)</span>
+          <button class="btn-logout" onclick="logout()">Keluar 🚪</button>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('beranda')">🏠 Beranda</button>
+        <button class="tab-btn" onclick="switchTab('katalog')">🛍️ Katalog Produk</button>
+        <button class="tab-btn" id="adminTabBtn" onclick="switchTab('admin')">👑 Panel Admin</button>
+      </nav>
+    </header>
+
+
+    <!-- TAB 1: HALAMAN BERANDA -->
+    <div id="tabBeranda">
+      
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <h2>🌸 Selamat Datang di GadgetStore Pro! 🎀</h2>
+        <p>Pusat gadget tercanggih dengan tampilan ter-cute & garansi resmi~ ✨</p>
+        <button class="btn-cute" onclick="switchTab('katalog')">Belanja Sekarang 🛍️</button>
+      </div>
+
+      <!-- Kategori Pilihan -->
+      <div class="section-card">
+        <h2 class="section-title">✨ Kategori Favorit Hari Ini</h2>
+        <div class="categories-grid">
+          <div class="category-card" onclick="switchTab('katalog')">
+            <span>📱</span>
+            Smartphone Cute
+          </div>
+          <div class="category-card" onclick="switchTab('katalog')">
+            <span>💻</span>
+            Laptop Gaming / Work
+          </div>
+          <div class="category-card" onclick="switchTab('katalog')">
+            <span>🎧</span>
+            Aksesoris Pinky
+          </div>
+          <div class="category-card" onclick="switchTab('katalog')">
+            <span>⌚</span>
+            Smartwatch & Fit
+          </div>
+        </div>
+
+        <!-- Banner Promo -->
+        <div class="promo-box">
+          <span>🎉</span>
+          <div>
+            <strong style="color: #be185d;">FLASH SALE PINK DAY!</strong>
+            <p style="font-size: 0.85rem; color: #9d174d;">Dapatkan cashback hingga Rp 2.000.000 dan bebas ongkir ke seluruh Indonesia 🚚</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Rekomendasi Unggulan -->
+      <div class="section-card">
+        <h2 class="section-title">🎬 Video Showcase Produk Pilihan</h2>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+          <video class="product-video" controls style="height: 300px; object-fit: cover;">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          </video>
+          <p style="font-size: 0.9rem; font-weight: bold; color: #be185d;">Video Review: Smartphone & Laptop Flagship 2026 🔥</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- TAB 2: PANEL PEMBELI (KATALOG & CHECKOUT) -->
+    <div id="tabKatalog" class="hidden">
+      <section class="section-card">
+        <h2 class="section-title">🛍️ Panel Pembeli (Katalog & Transaksi)</h2>
+        <div class="product-grid" id="productGrid">
+          
+          <!-- Contoh Produk Default 1 -->
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Smartphone Premium">
+            <div class="product-body">
+              <h3 class="product-title">Smartphone Pink Edition</h3>
+              <div class="product-price">Rp 12.000.000</div>
+              <p class="product-desc">Layar 120Hz AMOLED, RAM 12GB, Storage 256GB, Kamera 108MP.</p>
+              
+              <span class="video-label">🎬 Video Review & Demo:</span>
+              <video class="product-video" controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+
+              <a href="javascript:void(0)" class="btn-buy" onclick="prosesCheckout(this)">Beli Sekarang 🛍️</a>
+              <div class="status-tracker" style="display: none;"></div>
+            </div>
+          </div>
+
+          <!-- Contoh Produk Default 2 -->
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Laptop Ultra">
+            <div class="product-body">
+              <h3 class="product-title">Laptop Ultra Cute</h3>
+              <div class="product-price">Rp 18.500.000</div>
+              <p class="product-desc">Intel Core i7 Gen 13, RAM 16GB DDR5, SSD 1TB NVMe, Layar 4K.</p>
+              
+              <span class="video-label">🎬 Video Review & Demo:</span>
+              <video class="product-video" controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+
+              <a href="javascript:void(0)" class="btn-buy" onclick="prosesCheckout(this)">Beli Sekarang 🛍️</a>
+              <div class="status-tracker" style="display: none;"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+
+    <!-- TAB 3: PANEL ADMINISTRATOR -->
+    <div id="tabAdmin" class="hidden">
+      <section class="section-card">
+        <h2 class="section-title">👑 Panel Administrator (Tambah Produk)</h2>
+        <form id="adminForm">
+          <div class="form-group">
+            <label for="namaProduk">Nama Produk ✨</label>
+            <input type="text" id="namaProduk" placeholder="Contoh: Smartphone Cute Edition" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deskripsiHarga">Deskripsi & Harga 💸</label>
+            <textarea id="deskripsiHarga" placeholder="Deskripsi: Layar 120Hz, RAM 12GB...&#10;Harga: Rp 12.000.000" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="urlGambar">URL Gambar Produk 🖼️</label>
+            <input type="url" id="urlGambar" placeholder="https://..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="urlVideo">URL Video Review (MP4) 🎬</label>
+            <input type="url" id="urlVideo" placeholder="https://www.w3schools.com/html/mov_bbb.mp4" required>
+          </div>
+
+          <button type="submit" class="btn-cute">Simpan Produk ke Database 💾</button>
+        </form>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Logika Aplikasi -->
+  <script>
+    let currentRole = 'Pembeli';
+
+    // 1. Logika Login & Switch Halaman Utama
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      currentRole = document.getElementById('loginRole').value;
+
+      document.getElementById('userDisplay').innerText = username;
+      document.getElementById('roleDisplay').innerText = currentRole;
+
+      // Sembunyikan Login, Tampilkan Dashboard
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('mainView').classList.remove('hidden');
+
+      // Pengaturan Akses Tab Admin
+      const adminTabBtn = document.getElementById('adminTabBtn');
+      if (currentRole === 'Pembeli') {
+        adminTabBtn.style.display = 'none'; // Sembunyikan tab admin untuk Pembeli
+      } else {
+        adminTabBtn.style.display = 'inline-block';
+      }
+
+      // Default buka Tab Beranda
+      switchTab('beranda');
+    });
+
+    function logout() {
+      document.getElementById('mainView').classList.add('hidden');
+      document.getElementById('loginView').classList.remove('hidden');
+      document.getElementById('loginForm').reset();
+    }
+
+    // 2. Navigasi Tab (Beranda / Katalog / Admin)
+    function switchTab(tabName) {
+      const tabs = ['beranda', 'katalog', 'admin'];
+      const btns = document.querySelectorAll('.tab-btn');
+
+      tabs.forEach((tab, index) => {
+        const tabElement = document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+        if (tab === tabName) {
+          tabElement.classList.remove('hidden');
+          btns[index].classList.add('active');
+        } else {
+          tabElement.classList.add('hidden');
+          btns[index].classList.remove('active');
+        }
+      });
+    }
+
+    // 3. Logika Tambah Produk oleh Admin
+    document.getElementById('adminForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById('namaProduk').value;
+      const deskripsiHargaRaw = document.getElementById('deskripsiHarga').value;
+      const gambar = document.getElementById('urlGambar').value;
+      const video = document.getElementById('urlVideo').value;
+
+      // Parsing Harga Sederhana
+      const lines = deskripsiHargaRaw.split('\n');
+      let harga = "Rp 0";
+      let deskripsi = deskripsiHargaRaw;
+
+      lines.forEach(line => {
+        if(line.toLowerCase().includes("harga:")) {
+          harga = line.replace(/harga:/i, '').trim();
+        }
+      });
+
+      // Template Card Baru
+      const newCard = document.createElement('div');
+      newCard.className = 'product-card';
+      newCard.innerHTML = `
+        <img src="${gambar}" class="product-img" alt="${nama}" onerror="this.src='https://via.placeholder.com/300x180?text=Gambar+Produk'">
+        <div class="product-body">
+          <h3 class="product-title">${nama}</h3>
+          <div class="product-price">${harga.startsWith('Rp') ? harga : 'Rp ' + harga}</div>
+          <p class="product-desc">${deskripsi}</p>
+          
+          <span class="video-label">🎬 Video Review & Demo:</span>
+          <video class="product-video" controls>
+            <source src="${video}" type="video/mp4">
+          </video>
+
+          <a href="javascript:void(0)" class="btn-buy" onclick="prosesCheckout(this)">Beli Sekarang 🛍️</a>
+          <div class="status-tracker" style="display: none;"></div>
+        </div>
+      `;
+
+      document.getElementById('productGrid').appendChild(newCard);
+      document.getElementById('adminForm').reset();
+      alert('✨ Produk baru berhasil disimpan ke Database! 🌸');
+
+      // Pindah otomatis ke katalog untuk melihat hasilnya
+      switchTab('katalog');
+    });
+
+    // 4. Logika Checkout & Perubahan Status Transaksi
+    function prosesCheckout(element) {
+      const parentBody = element.parentElement;
+      const statusBox = parentBody.querySelector('.status-tracker');
+      
+      statusBox.style.display = 'block';
+
+      // Tahapan Status Pesanan
+      const tahapanStatus = [
+        "Status: ⏳ Pesanan belum dibayar",
+        "Status: ⚙️ Pesanan diproses",
+        "Status: 🚚 Pesanan dikirim",
+        "Status: ✅ Pesanan selesai"
+      ];
+
+      let index = 0;
+      statusBox.innerText = tahapanStatus[index];
+      
+      const interval = setInterval(() => {
+        index++;
+        if (index < tahapanStatus.length) {
+          statusBox.innerText = tahapanStatus[index];
+          if (index === tahapanStatus.length - 1) {
+            statusBox.style.backgroundColor = '#dcfce7';
+            statusBox.style.borderColor = '#86efac';
+            statusBox.style.color = '#15803d';
+          }
+        } else {
+          clearInterval(interval);
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
