@@ -566,7 +566,6 @@
     .inventory-table th { background: linear-gradient(135deg, #ff7eb3, #ff4785); color: white; text-align: left; padding: 12px; border-radius: 12px; font-weight: 600; }
     .inventory-table td { padding: 12px; border-bottom: 1px solid #ffeef2; color: var(--text-main); font-weight: 600; vertical-align: middle; }
 
-    /* Style Thumbnail Gambar Admin */
     .admin-thumb {
       width: 50px;
       height: 50px;
@@ -685,7 +684,7 @@
     </div>
 
     <!-- MODAL DETAIL PRODUK & VIDEO REVIEW -->
-    <div id="detailModal" class="modal-overlay hidden">
+    <div id="detailModal" class="modal-overlay hidden" onclick="handleBackdropClick(event, 'detailModal')">
       <div class="modal-card">
         <div class="modal-header">
           <h3 id="modalProductTitle">Detail Gadget ✨</h3>
@@ -725,7 +724,7 @@
     </div>
 
     <!-- MODAL KERANJANG -->
-    <div id="cartModal" class="modal-overlay hidden">
+    <div id="cartModal" class="modal-overlay hidden" onclick="handleBackdropClick(event, 'cartModal')">
       <div class="modal-card">
         <div class="modal-header">
           <h3>🛒 Keranjang Belanja Cute</h3>
@@ -792,7 +791,7 @@
       <div class="admin-stats-grid">
         <div class="stat-card">
           <small>Total Produk Aktif</small>
-          <h3 id="statTotalProduk">5 Produk</h3>
+          <h3 id="statTotalProduk">0 Produk</h3>
         </div>
         <div class="stat-card">
           <small>Pesanan Masuk</small>
@@ -883,7 +882,7 @@
   </div>
 
   <!-- MODAL EDIT PRODUK (ADMIN) -->
-  <div id="editModal" class="modal-overlay hidden">
+  <div id="editModal" class="modal-overlay hidden" onclick="handleBackdropClick(event, 'editModal')">
     <div class="modal-card">
       <div class="modal-header">
         <h3>✏️ Edit Data Produk</h3>
@@ -926,7 +925,7 @@
   </div>
 
   <script>
-    // Data Default Produk dengan Gambar Lokal
+    // Data Default Produk
     let products = [
       {
         id: 'prod-1',
@@ -1028,6 +1027,14 @@
       input.value = currentVal;
     }
 
+    function handleBackdropClick(event, modalId) {
+      if (event.target.id === modalId) {
+        if (modalId === 'detailModal') closeDetailModal();
+        else if (modalId === 'cartModal') toggleCartModal();
+        else if (modalId === 'editModal') closeEditModal();
+      }
+    }
+
     // Render Produk ke Grid Pembeli
     function renderProducts() {
       const grid = document.getElementById('productGrid');
@@ -1078,7 +1085,7 @@
       filterProducts();
     }
 
-    // Render Tabel Inventaris Admin (Dengan Gambar Produk)
+    // Render Tabel Inventaris Admin
     function renderInventoryTable() {
       const tbody = document.getElementById('inventoryTableBody');
       if (!tbody) return;
@@ -1128,6 +1135,7 @@
     });
 
     function logout() {
+      closeDetailModal();
       document.getElementById('pembeliView').classList.add('hidden');
       document.getElementById('adminView').classList.add('hidden');
       document.getElementById('loginView').classList.remove('hidden');
@@ -1209,10 +1217,12 @@
 
     function closeDetailModal() {
       const videoElement = document.getElementById('modalProductVideo');
-      videoElement.pause();
-      videoElement.currentTime = 0;
-      videoElement.removeAttribute('src');
-      videoElement.load();
+      if (videoElement) {
+        videoElement.pause();
+        videoElement.currentTime = 0;
+        videoElement.removeAttribute('src');
+        videoElement.load();
+      }
       document.getElementById('detailModal').classList.add('hidden');
     }
 
@@ -1468,7 +1478,6 @@
       container.innerHTML = html;
     }
 
-    // Render Tabel Status Pesanan Admin (Dengan Foto Item)
     function renderAdminOrders() {
       const tbody = document.getElementById('adminOrdersTableBody');
       const statPesanan = document.getElementById('statTotalPesanan');
